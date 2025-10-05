@@ -15,6 +15,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: #333;
+            min-height: 100vh;
         }
 
         /* Navbar */
@@ -46,6 +47,7 @@
             transition: all 0.3s;
             border-bottom: 3px solid transparent;
             font-size: 14px;
+            cursor: pointer;
         }
 
         nav ul li a:hover,
@@ -66,8 +68,24 @@
             background: white;
             border-radius: 15px;
             padding: 40px;
-            margin-bottom: 30px;
             box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         h1 {
@@ -251,19 +269,19 @@
 <body>
     <nav>
         <ul>
-            <li><a href="#ceo-dashboard">CEO Dashboard</a></li>
-            <li><a href="#closer-dashboard" class="active">Closer Dashboard</a></li>
-            <li><a href="#closing-3s">Closing 3's</a></li>
-            <li><a href="#setter-dashboard">Setter Dashboard</a></li>
-            <li><a href="#daily-post">Daily Post Call Report</a></li>
-            <li><a href="#untitled-page">Untitled Page</a></li>
-            <li><a href="#t5-revenue">T5 Revenue</a></li>
+            <li><a onclick="showPage('ceo-dashboard')">CEO Dashboard</a></li>
+            <li><a onclick="showPage('closer-dashboard')" class="active">Closer Dashboard</a></li>
+            <li><a onclick="showPage('closing-3s')">Closing 3's</a></li>
+            <li><a onclick="showPage('setter-dashboard')">Setter Dashboard</a></li>
+            <li><a onclick="showPage('daily-post')">Daily Post Call Report</a></li>
+            <li><a onclick="showPage('untitled-page')">Untitled Page</a></li>
+            <li><a onclick="showPage('t5-revenue')">T5 Revenue</a></li>
         </ul>
     </nav>
 
     <div class="container">
         <!-- Closer Dashboard Section -->
-        <section id="closer-dashboard">
+        <section id="closer-dashboard" class="active">
             <h1>📊 Closer Dashboard</h1>
             
             <div class="dashboard-grid">
@@ -331,6 +349,21 @@
                     <h3>Growth Rate</h3>
                     <div class="value">23.5%</div>
                 </div>
+                <div class="metric-card highlight">
+                    <h3>Team Members</h3>
+                    <div class="value">45</div>
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <div class="chart-box">
+                    <h3>Monthly Revenue Trend</h3>
+                    <div class="chart-placeholder">📈 Revenue Growth Chart</div>
+                </div>
+                <div class="chart-box">
+                    <h3>Department Performance</h3>
+                    <div class="chart-placeholder">📊 Performance Metrics</div>
+                </div>
             </div>
         </section>
 
@@ -389,6 +422,15 @@
                     <h3>Conversion Rate</h3>
                     <div class="value">45.3%</div>
                 </div>
+                <div class="metric-card highlight">
+                    <h3>Talk Time</h3>
+                    <div class="value">127 hrs</div>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <h3>Daily Call Activity</h3>
+                <div class="chart-placeholder">📞 Call Volume Chart</div>
             </div>
         </section>
 
@@ -408,6 +450,10 @@
             <div class="form-group">
                 <label>Deals Closed</label>
                 <input type="number" placeholder="Enter deals closed">
+            </div>
+            <div class="form-group">
+                <label>Revenue Generated</label>
+                <input type="text" placeholder="$0.00">
             </div>
             <div class="form-group">
                 <label>Notes</label>
@@ -482,25 +528,26 @@
     </div>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                // Remove active class from all links
-                document.querySelectorAll('nav a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                // Add active class to clicked link
-                this.classList.add('active');
-                
-                // Smooth scroll to section
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        function showPage(pageId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.classList.remove('active');
             });
-        });
+            
+            // Show selected section
+            const selectedSection = document.getElementById(pageId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+            
+            // Update active nav link
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
     </script>
 </body>
 </html>
