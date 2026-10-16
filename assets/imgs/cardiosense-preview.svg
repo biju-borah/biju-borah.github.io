@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">CardioSense project illustration</title>
+  <desc id="desc">A conceptual ECG monitoring display with a green waveform, connected circuit board, and signal acquisition status.</desc>
+  <defs>
+    <pattern id="fine-grid" width="12" height="12" patternUnits="userSpaceOnUse"><path d="M12 0H0V12" stroke="#84A08C" stroke-opacity=".13" stroke-width=".6"/></pattern>
+    <pattern id="major-grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0V60" stroke="#84A08C" stroke-opacity=".16" stroke-width=".8"/></pattern>
+    <clipPath id="signal-clip"><rect x="67" y="124" width="666" height="224" rx="6"/></clipPath>
+    <filter id="board-shadow" x="-30%" y="-40%" width="160%" height="190%"><feDropShadow dx="0" dy="7" stdDeviation="8" flood-color="#1A392E" flood-opacity=".12"/></filter>
+  </defs>
+  <path fill="#E4EADF" d="M0 0h800v500H0z"/>
+  <circle cx="733" cy="434" r="137" fill="#D7E1D2"/>
+  <path d="M0 0h252C173 48 100 80 0 73Z" fill="#D8E3D3"/>
+  <rect x="28" y="24" width="744" height="434" rx="14" fill="#F9FAF4" stroke="#C6D1C3"/>
+  <path d="M28 68h744" stroke="#DDE4D7"/>
+  <rect x="45" y="37" width="25" height="22" rx="6" fill="#244D3E"/>
+  <path d="M49 48h4l2-5 3 11 3-8 2 2h4" stroke="#E8EFE1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="80" y="52" fill="#244D3E" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="-.3">CardioSense</text>
+  <text x="703" y="51" text-anchor="end" fill="#768574" font-family="monospace" font-size="9" letter-spacing="1.5">SIGNAL WORKSPACE</text>
+  <circle cx="739" cy="47" r="5" fill="#719778"/>
+  <text x="67" y="101" fill="#264C3C" font-family="Arial, sans-serif" font-size="12" font-weight="700">ECG signal</text>
+  <circle cx="645" cy="97" r="3.5" fill="#758F74"/>
+  <text x="657" y="100" fill="#73806E" font-family="monospace" font-size="8" letter-spacing=".8">LIVE WAVEFORM</text>
+  <rect x="67" y="124" width="666" height="224" rx="6" fill="#E8F0E1" stroke="#CFDCC9"/>
+  <g clip-path="url(#signal-clip)">
+    <path fill="url(#fine-grid)" d="M67 124h666v224H67z"/>
+    <path fill="url(#major-grid)" d="M67 124h666v224H67z"/>
+    <path d="M67 242h666" stroke="#87A18B" stroke-opacity=".3" stroke-dasharray="3 5"/>
+    <path d="M67 242h32c9 0 9-10 18-10s10 10 18 10h17l9 10 11-24 10 62 13-125 12 92 9-15h20c9 0 14-19 29-19 16 0 20 19 36 19h39c9 0 10-10 18-10 9 0 10 10 18 10h15l10 10 10-24 11 62 12-125 12 92 10-15h20c8 0 14-19 29-19 16 0 20 19 36 19h38c9 0 10-10 18-10 9 0 10 10 18 10h16l9 10 11-24 10 62 13-125 12 92 9-15h20c9 0 14-19 29-19 16 0 20 19 36 19h33" stroke="#285843" stroke-width="9" stroke-opacity=".045" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M67 242h32c9 0 9-10 18-10s10 10 18 10h17l9 10 11-24 10 62 13-125 12 92 9-15h20c9 0 14-19 29-19 16 0 20 19 36 19h39c9 0 10-10 18-10 9 0 10 10 18 10h15l10 10 10-24 11 62 12-125 12 92 10-15h20c8 0 14-19 29-19 16 0 20 19 36 19h38c9 0 10-10 18-10 9 0 10 10 18 10h16l9 10 11-24 10 62 13-125 12 92 9-15h20c9 0 14-19 29-19 16 0 20 19 36 19h33" stroke="#285843" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M704 124v224" stroke="#73947B" stroke-opacity=".45" stroke-dasharray="4 5"/>
+    <rect x="704" y="124" width="29" height="224" fill="#E8F0E1" fill-opacity=".75"/>
+    <circle cx="704" cy="242" r="4" fill="#285843" stroke="#EDF4E7" stroke-width="2"/>
+  </g>
+  <text x="80" y="145" fill="#73876D" font-family="monospace" font-size="8" letter-spacing="1.4">SIGNAL ACQUISITION</text>
+  <text x="80" y="331" fill="#7C8D77" font-family="monospace" font-size="8" letter-spacing="1.4">TIME →</text>
+  <path d="M68 370h245" stroke="#DEE5D8"/>
+  <text x="68" y="391" fill="#2B4E3E" font-family="Arial, sans-serif" font-size="12" font-weight="700">From sensor to signal.</text>
+  <text x="68" y="411" fill="#7C8876" font-family="Arial, sans-serif" font-size="10">Embedded hardware. Real-time insight.</text>
+  <rect x="68" y="425" width="70" height="16" rx="3" stroke="#D6DFCF"/>
+  <text x="103" y="436" text-anchor="middle" fill="#6F8269" font-family="monospace" font-size="7" letter-spacing="1">EMBEDDED</text>
+  <rect x="146" y="425" width="40" height="16" rx="3" stroke="#D6DFCF"/>
+  <text x="166" y="436" text-anchor="middle" fill="#6F8269" font-family="monospace" font-size="7" letter-spacing="1">IoT</text>
+  <path d="M330 400h43c12 0 12-19 24-19h30" stroke="#A6B5A0" stroke-width="1.5" stroke-dasharray="4 5"/>
+  <circle cx="330" cy="400" r="3" fill="#7E947A"/>
+  <circle cx="427" cy="381" r="3" fill="#7E947A"/>
+  <g filter="url(#board-shadow)">
+    <rect x="443" y="365" width="174" height="76" rx="7" fill="#2F5945" stroke="#21432F"/>
+    <rect x="449" y="371" width="162" height="64" rx="3" stroke="#749270" stroke-opacity=".45"/>
+    <g stroke="#91AE79" stroke-width="1" opacity=".7">
+      <path d="M454 382h19l8 8h20m-47 16h20l7-8h20m-47 25h26l9-14h12M562 384h14l10-7h19m-43 22h19l9-7h15m-43 24h25l9 10h9"/>
+      <path d="M514 373v10m11-10v10m11-10v10m11-10v10M514 421v12m11-12v12m11-12v12m11-12v12"/>
+    </g>
+    <rect x="501" y="383" width="61" height="38" rx="3" fill="#263D30" stroke="#799073" stroke-width="1"/>
+    <rect x="508" y="389" width="47" height="25" rx="1" fill="#304B38"/>
+    <text x="531" y="404" fill="#94A98B" text-anchor="middle" font-family="monospace" font-size="7" letter-spacing="1">MCU</text>
+    <rect x="441" y="390" width="12" height="23" rx="2" fill="#B0B9A8" stroke="#7E907A"/>
+    <path d="M442 395h6v13h-6" stroke="#6E7B68"/>
+    <g fill="#C4C098"><rect x="473" y="375" width="11" height="5" rx="1"/><rect x="478" y="426" width="11" height="5" rx="1"/><rect x="575" y="426" width="9" height="5" rx="1"/><rect x="593" y="404" width="5" height="10" rx="1"/></g>
+    <circle cx="458" cy="378" r="2.5" fill="#CBD7BC"/><circle cx="602" cy="378" r="2.5" fill="#CBD7BC"/><circle cx="458" cy="429" r="2.5" fill="#CBD7BC"/><circle cx="602" cy="429" r="2.5" fill="#CBD7BC"/>
+    <circle cx="585" cy="409" r="3" fill="#CD8B51"/><circle cx="585" cy="409" r="6" fill="#CD8B51" fill-opacity=".13"/>
+  </g>
+  <path d="M618 392h17c8 0 8-14 16-14h14" stroke="#8E9F87" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M618 407h22c8 0 8 14 16 14h9" stroke="#BE805A" stroke-width="1.5" stroke-linecap="round"/>
+  <circle cx="679" cy="378" r="13" fill="#EEF2E7" stroke="#CCD6C4"/>
+  <circle cx="679" cy="378" r="6" fill="#9EB397"/>
+  <circle cx="679" cy="421" r="13" fill="#EEF2E7" stroke="#CCD6C4"/>
+  <circle cx="679" cy="421" r="6" fill="#C58A65"/>
+  <text x="46" y="480" fill="#6F806A" font-family="monospace" font-size="9" letter-spacing="1.5">CONNECTED HEALTH TECHNOLOGY</text>
+  <text x="753" y="480" text-anchor="end" fill="#6F806A" font-family="monospace" font-size="9" letter-spacing="1.5">02 / CARDIOSENSE</text>
+</svg>

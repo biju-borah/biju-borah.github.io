@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">FloodSafeGIS project illustration</title>
+  <desc id="desc">A conceptual geographic mapping interface with green terrain contours, a blue flood extent overlay, and a location marker.</desc>
+  <defs>
+    <pattern id="terrain-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" stroke="#6D8978" stroke-opacity=".09"/>
+    </pattern>
+    <pattern id="water-lines" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(-25)">
+      <path d="M0 0V14" stroke="#437D91" stroke-opacity=".17"/>
+    </pattern>
+    <clipPath id="map-clip"><rect x="44" y="84" width="712" height="358" rx="4"/></clipPath>
+    <filter id="card-shadow" x="-20%" y="-30%" width="140%" height="170%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#243B30" flood-opacity=".08"/></filter>
+  </defs>
+  <path fill="#E7E8DD" d="M0 0h800v500H0z"/>
+  <circle cx="722" cy="58" r="118" fill="#DCE1D4"/>
+  <path d="M0 428c112-63 224-52 326 72H0Z" fill="#DCE1D4"/>
+  <rect x="28" y="24" width="744" height="434" rx="14" fill="#FAFAF3" stroke="#C9D0C3"/>
+  <path d="M28 68h744" stroke="#DFE2D7"/>
+  <rect x="45" y="39" width="22" height="18" rx="5" fill="#223C32"/>
+  <path d="m49 51 5-8 4 5 5-4v9H49Z" fill="#DCE7D4"/>
+  <text x="78" y="52" fill="#233C32" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="-.3">FloodSafeGIS</text>
+  <text x="704" y="51" fill="#738074" font-family="monospace" font-size="9" text-anchor="end" letter-spacing="1.5">MAPPING WORKSPACE</text>
+  <circle cx="739" cy="47" r="5" fill="#728D74"/>
+  <g clip-path="url(#map-clip)">
+    <path fill="#D6DFCC" d="M44 84h712v358H44z"/>
+    <path fill="url(#terrain-grid)" d="M44 84h712v358H44z"/>
+    <path d="M44 224c49-25 43-81 100-102 55-22 78 13 128-3 69-22 116-39 161-8 41 30 78 27 122 5 56-26 130-19 201 10v316H44Z" fill="#CDD9C1"/>
+    <path d="M44 278c74-26 57-77 105-95 53-20 102 13 135-7 39-24 41-63 93-51 43 10 33 67 94 73 72 8 85-60 166-33 54 18 50 71 119 66v211H44Z" fill="#C1D0B6"/>
+    <path d="M44 334c60 6 104-34 141-51 65-28 82-2 128-9 55-8 49-46 95-41 42 5 61 46 110 51 73 7 101-24 153-12 43 10 65 38 85 25v145H44Z" fill="#B5C8AD"/>
+    <g stroke="#839C7B" stroke-width="1" opacity=".58">
+      <path d="M24 176c57 5 52-61 112-70 67-10 72 15 118 1 49-14 82-44 129-28 49 17 65 58 119 48s66-44 115-39 72 36 144 16"/>
+      <path d="M29 202c65 9 50-58 113-68 59-10 87 27 131 10s74-43 111-28c40 16 47 56 105 49s81-48 133-36 77 45 142 34"/>
+      <path d="M28 229c75 7 55-56 122-68 61-10 84 33 131 15s70-36 99-18c27 18 34 55 96 49s89-42 146-28 81 52 145 44"/>
+      <path d="M32 256c82 3 69-58 126-61 50-3 78 32 126 13s68-29 88-8c22 22 40 51 96 51s97-33 146-18 92 44 152 33"/>
+      <path d="M29 310c91 6 103-60 166-66 49-5 66 25 109 7s50-28 76-8 38 39 82 43 90-20 146-3 102 30 161 20"/>
+      <path d="M25 346c100 13 122-56 181-67 46-9 66 12 100 4s49-16 74 2 44 38 86 40 84-15 136-3 102 35 163 29"/>
+      <path d="M26 383c95 17 146-58 191-66 50-8 72 15 109 4 42-12 61 14 97 32 37 18 79 7 113 3 76-9 139 43 231 37"/>
+      <path d="M36 418c105 19 147-59 208-66 49-7 59 13 99 8 45-6 64 33 108 34 48 1 62-9 98-3 75 13 128 43 214 38"/>
+    </g>
+    <path d="M324 73c-8 39 37 54 31 90-6 38-53 39-50 76 4 44 60 30 69 66 9 37-21 58 8 87 15 17 34 37 21 61" stroke="#EDF0E3" stroke-width="25"/>
+    <path d="M324 73c-8 39 37 54 31 90-6 38-53 39-50 76 4 44 60 30 69 66 9 37-21 58 8 87 15 17 34 37 21 61" stroke="#8AB3BC" stroke-width="13"/>
+    <path d="M305 160c-16 20-45 25-54 51-7 20-31 25-29 51 1 20 34 28 52 23 35-11 51 6 50 27-1 30 38 42 65 24 25-16 43-12 51-40 9-31-23-48-40-58-23-14-13-44-36-57-19-11-35-44-59-21Z" fill="#79A7B5" fill-opacity=".72" stroke="#527F8F" stroke-width="1.5" stroke-dasharray="5 4"/>
+    <path d="M305 160c-16 20-45 25-54 51-7 20-31 25-29 51 1 20 34 28 52 23 35-11 51 6 50 27-1 30 38 42 65 24 25-16 43-12 51-40 9-31-23-48-40-58-23-14-13-44-36-57-19-11-35-44-59-21Z" fill="url(#water-lines)"/>
+    <path d="M58 377 178 312l90-1 107-117 166-12 105-69 127-3" stroke="#F5F2DC" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M58 377 178 312l90-1 107-117 166-12 105-69 127-3" stroke="#B8BA9F" stroke-width="1.4" stroke-linejoin="round"/>
+    <path d="m129 83 50 120 64 47 11 112 63 80M465 84l-31 88 59 106 107 57 59 107" stroke="#ECECDD" stroke-width="5" stroke-linejoin="round"/>
+    <g fill="#81967A" fill-opacity=".6">
+      <rect x="159" y="282" width="8" height="7" rx="1"/><rect x="169" y="292" width="12" height="6" rx="1"/><rect x="183" y="277" width="7" height="12" rx="1"/>
+      <rect x="493" y="157" width="7" height="10" rx="1"/><rect x="505" y="154" width="10" height="7" rx="1"/><rect x="522" y="161" width="6" height="11" rx="1"/>
+      <rect x="591" y="322" width="11" height="6" rx="1"/><rect x="610" y="331" width="7" height="10" rx="1"/><rect x="620" y="318" width="10" height="8" rx="1"/>
+    </g>
+    <text x="130" y="270" fill="#5D775F" font-family="monospace" font-size="9" letter-spacing="1.6">TERRAIN</text>
+    <text x="511" y="300" fill="#5D775F" font-family="monospace" font-size="9" letter-spacing="1.6">STUDY AREA</text>
+    <circle cx="373" cy="216" r="21" fill="#C67548" fill-opacity=".13"/>
+    <path d="M373 193c-9 0-16 7-16 16 0 12 16 28 16 28s16-16 16-28c0-9-7-16-16-16Z" fill="#BE633A" stroke="#F7F4E7" stroke-width="2.5"/>
+    <circle cx="373" cy="209" r="5" fill="#F8F3E6"/>
+  </g>
+  <g filter="url(#card-shadow)">
+    <rect x="65" y="103" width="168" height="36" rx="7" fill="#FCFCF6" stroke="#D8DDCF"/>
+    <circle cx="83" cy="121" r="5" stroke="#708471" stroke-width="1.5"/><path d="m87 125 4 4" stroke="#708471" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="102" y="125" fill="#718071" font-family="Arial, sans-serif" font-size="10">Explore study area</text>
+  </g>
+  <g filter="url(#card-shadow)">
+    <rect x="535" y="325" width="198" height="94" rx="9" fill="#FCFCF6" stroke="#D8DDCF"/>
+    <rect x="551" y="342" width="8" height="8" rx="2" fill="#729CAB"/>
+    <text x="569" y="350" fill="#233C32" font-family="Arial, sans-serif" font-size="13" font-weight="700">Flood extent</text>
+    <text x="551" y="371" fill="#768173" font-family="Arial, sans-serif" font-size="10">AI-assisted mapping</text>
+    <path d="M551 384h166" stroke="#E2E5DA"/>
+    <circle cx="555" cy="400" r="3" fill="#6E8C73"/>
+    <text x="567" y="403" fill="#718071" font-family="monospace" font-size="8" letter-spacing=".8">LAYER VISIBLE</text>
+    <path d="m701 398 4 4 7-8" stroke="#718C73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <rect x="704" y="103" width="30" height="62" rx="7" fill="#FCFCF6" stroke="#D8DDCF"/>
+  <path d="M713 119h12m-6-6v12M713 149h12M705 134h28" stroke="#647963" stroke-width="1.3" stroke-linecap="round"/>
+  <path d="m719 188-6 15 6-3 6 3-6-15Z" fill="#49634D"/>
+  <text x="719" y="182" text-anchor="middle" fill="#49634D" font-family="monospace" font-size="8">N</text>
+  <path d="M66 411v6h64v-6M98 414v3" stroke="#526A53" stroke-width="1.4"/>
+  <text x="65" y="404" fill="#526A53" font-family="monospace" font-size="8">MAP OVERVIEW</text>
+  <text x="46" y="480" fill="#6E7D6A" font-family="monospace" font-size="9" letter-spacing="1.5">GEOSPATIAL INTELLIGENCE</text>
+  <text x="753" y="480" text-anchor="end" fill="#6E7D6A" font-family="monospace" font-size="9" letter-spacing="1.5">01 / FLOODSAFEGIS</text>
+</svg>

@@ -1,374 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine? 💕</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #ffc3a0 100%);
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Floating hearts animation */
-        .heart-bg {
-            position: fixed;
-            font-size: 20px;
-            opacity: 0.3;
-            animation: float 10s infinite;
-            pointer-events: none;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.3;
-            }
-            90% {
-                opacity: 0.3;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        /* Question Page */
-        .question-page {
-            text-align: center;
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4);
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            z-index: 10;
-        }
-
-        .emoji {
-            font-size: 5rem;
-            animation: heartbeat 1.5s infinite;
-            display: inline-block;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            10%, 30% { transform: scale(1.1); }
-            20%, 40% { transform: scale(1); }
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #ff1493;
-            margin: 1.5rem 0;
-            font-weight: bold;
-        }
-
-        .subtitle {
-            color: #ff69b4;
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .button-container {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-            position: relative;
-            min-height: 60px;
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-yes {
-            background: linear-gradient(135deg, #ff1493, #ff69b4);
-            color: white;
-        }
-
-        .btn-yes:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
-        }
-
-        .btn-no {
-            background: linear-gradient(135deg, #ddd, #bbb);
-            color: #666;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-no.moving {
-            position: fixed;
-            z-index: 100;
-        }
-
-        /* Success Page */
-        .success-page {
-            display: none;
-            text-align: center;
-            background: white;
-            padding: 2rem 3rem;
-            border-radius: 30px;
-            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.4);
-            max-width: 650px;
-            width: 90%;
-            position: relative;
-            z-index: 10;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .success-page.active {
-            display: flex;
-            animation: popIn 0.5s ease;
-        }
-
-        @keyframes popIn {
-            0% {
-                transform: scale(0);
-                opacity: 0;
-            }
-            50% {
-                transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
-        .celebration {
-            font-size: 4rem;
-            margin: 0.5rem 0;
-        }
-
-        .success-page h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #ff1493, #ff69b4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin: 0.5rem 0;
-        }
-
-        .love-message {
-            color: #ff69b4;
-            font-size: 1.2rem;
-            margin: 1rem 0;
-            line-height: 1.6;
-        }
-
-        .hearts-burst {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1000;
-        }
-
-        .burst-heart {
-            position: absolute;
-            font-size: 30px;
-            animation: burst 1s ease-out forwards;
-        }
-
-        @keyframes burst {
-            0% {
-                transform: translate(0, 0) scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--tx), var(--ty)) scale(1);
-                opacity: 0;
-            }
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2rem;
-            }
-            .subtitle {
-                font-size: 1rem;
-            }
-            .btn {
-                padding: 0.9rem 1.8rem;
-                font-size: 1rem;
-            }
-            .emoji {
-                font-size: 4rem;
-            }
-            .success-page {
-                max-width: 85%;
-                padding: 2rem 1.5rem;
-            }
-            .celebration {
-                font-size: 4rem;
-            }
-            .success-page h1 {
-                font-size: 2rem;
-            }
-            .love-message {
-                font-size: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Floating hearts background -->
-    <div id="hearts-container"></div>
-
-    <!-- Question Page -->
-    <div class="question-page" id="questionPage">
-        <div class="emoji">💕</div>
-        <h1>Will You Be My Valentine?</h1>
-        <p class="subtitle">I promise to make this Valentine's Day special! 🌹</p>
-        
-        <div class="button-container" id="buttonContainer">
-            <button class="btn btn-yes" onclick="handleYes()">Yes! 💖</button>
-            <button class="btn btn-no" id="noBtn" onmouseover="moveButton()" onclick="moveButton()">Not Interested</button>
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f6f6f0" />
+    <meta name="description" content="Biju Borah — software engineer building reliable enterprise systems, thoughtful web experiences, and AI-powered solutions. Explore my work at Oracle NetSuite and beyond." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Biju Borah — Software Engineer & Builder" />
+    <meta property="og:description" content="Thoughtful code. Real-world impact. Enterprise engineering, AI-powered projects, and the curiosity that connects them." />
+    <meta property="og:url" content="https://biju-borah.github.io/" />
+    <meta property="og:image" content="https://biju-borah.github.io/assets/imgs/social-preview.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://biju-borah.github.io/" />
+    <link rel="icon" href="assets/imgs/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="assets/css/portfolio.css" />
+    <script src="assets/js/portfolio.js" defer></script>
+    <title>Biju Borah — Software Engineer & Builder</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 15v5h14v-5"/></symbol>
+      <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4.3 1.3-4.3-2.2-6-2.7M15 22v-3.3c0-1 .1-1.5-.5-2.2 3.3-.4 6.7-1.6 6.7-7.3 0-1.6-.6-2.9-1.5-3.9.2-.4.7-1.9-.2-3.8 0 0-1.3-.4-4.1 1.5a14 14 0 0 0-7.4 0C5.2 1.1 3.9 1.5 3.9 1.5 3 3.4 3.5 4.9 3.7 5.3 2.8 6.3 2.2 7.6 2.2 9.2c0 5.7 3.4 6.9 6.7 7.3-.5.6-.6 1.2-.6 2.2V22"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 11-8 11S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.7 13.1A9 9 0 0 1 10.9 3.3 9 9 0 1 0 20.7 13.1Z"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M8 3h8v7a4 4 0 0 1-8 0V3Zm0 2H4v3a4 4 0 0 0 4 4m8-7h4v3a4 4 0 0 1-4 4m-4 2v6m-4 1h8"/></symbol>
+    </defs></svg>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#home" class="wordmark" aria-label="Biju Borah, home">b<span class="wordmark-second">b</span><span class="wordmark-dot">.</span></a>
+        <nav class="desktop-nav" aria-label="Main navigation"><a href="#work">Work</a><a href="#experience">Experience</a><a href="#about">About</a></nav>
+        <div class="header-actions"><button class="icon-button theme-toggle" aria-label="Switch to dark theme" title="Switch theme"><svg class="icon moon-icon"><use href="#i-moon"/></svg><svg class="icon sun-icon"><use href="#i-sun"/></svg></button><a href="#contact" class="header-contact">Let’s talk <svg class="icon"><use href="#i-up-right"/></svg></a><button class="menu-toggle icon-button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span></button></div>
+      </div>
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="#work">Work <span>01</span></a><a href="#experience">Experience <span>02</span></a><a href="#about">About <span>03</span></a><a href="#contact">Let’s talk <svg class="icon"><use href="#i-up-right"/></svg></a></nav>
+    </header>
+    <main id="main">
+      <section class="hero container" id="home" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="status-dot"></span> SOFTWARE ENGINEER & CURIOUS BUILDER</div>
+          <h1 id="hero-title">Thoughtful code.<br />Real-world<br /><span class="impact-word">impact<span class="hero-period">.</span><svg class="hand-line" viewBox="0 0 330 18" aria-hidden="true"><path d="M3 11C87 1 198 3 324 8M21 16C106 8 222 9 302 13"/></svg></span></h1>
+          <p class="hero-description">Hi, I’m <strong>Biju Borah.</strong> I turn complex problems into reliable software — from enterprise payment systems to AI that makes a difference.</p>
+          <div class="hero-buttons"><a class="button button-primary" href="#work">Explore my work <svg class="icon arrow-down"><use href="#i-arrow"/></svg></a><a class="button button-text" href="assets/Resume_Biju_Borah.pdf" download="Biju_Borah_Resume.pdf">Download résumé <svg class="icon"><use href="#i-download"/></svg></a></div>
+          <div class="hero-location"><svg class="icon"><use href="#i-pin"/></svg> Hyderabad, India <span class="meta-divider"></span> Built with curiosity</div>
         </div>
-    </div>
-
-    <!-- Success Page -->
-    <div class="success-page" id="successPage">
-        <div class="celebration">🎉💝🎊</div>
-        <h1>Yayyy!</h1>
-        <div style="font-size: 3rem; margin: 0.5rem 0;">🥰</div>
-        <p class="love-message">
-            I'm the luckiest person in the world! 💕<br>
-            Can't wait to spend this Valentine's Day with you!<br>
-            You make every day feel like Valentine's Day! 🌹✨
-        </p>
-        <div class="celebration">❤️💖💗💓💕</div>
-    </div>
-
-    <script>
-        // Create floating hearts background
-        const heartsContainer = document.getElementById('hearts-container');
-        const heartSymbols = ['❤️', '💕', '💖', '💗', '💝'];
-        
-        function createFloatingHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart-bg';
-            heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 5 + 8) + 's';
-            heart.style.animationDelay = Math.random() * 5 + 's';
-            heartsContainer.appendChild(heart);
-            
-            setTimeout(() => heart.remove(), 15000);
-        }
-
-        // Create hearts periodically
-        setInterval(createFloatingHeart, 800);
-        for (let i = 0; i < 10; i++) {
-            setTimeout(createFloatingHeart, i * 200);
-        }
-
-        const noButton = document.getElementById('noBtn');
-        const buttonContainer = document.getElementById('buttonContainer');
-        const messages = [
-            "Not Interested",
-            "Really? 🥺",
-            "Are you sure? 💔",
-            "Please? 🙏",
-            "Think again! 💭",
-            "Don't break my heart! 💔",
-            "Give me a chance! 🌹",
-            "Pretty please? 🥺",
-            "One more time... 💕",
-            "You're breaking my heart! 😢"
-        ];
-        let messageIndex = 0;
-
-        function moveButton() {
-            // Add moving class to enable fixed positioning
-            noButton.classList.add('moving');
-            
-            // Get viewport dimensions
-            const viewportWidth = window.innerWidth;
-            const viewportHeight = window.innerHeight;
-            
-            // Get button dimensions
-            const buttonWidth = noButton.offsetWidth;
-            const buttonHeight = noButton.offsetHeight;
-            
-            // Calculate maximum positions (with padding from edges)
-            const padding = 20;
-            const maxX = viewportWidth - buttonWidth - padding;
-            const maxY = viewportHeight - buttonHeight - padding;
-            
-            // Generate random position anywhere on screen
-            const randomX = Math.random() * (maxX - padding) + padding;
-            const randomY = Math.random() * (maxY - padding) + padding;
-            
-            noButton.style.left = randomX + 'px';
-            noButton.style.top = randomY + 'px';
-            
-            // Change text
-            messageIndex = (messageIndex + 1) % messages.length;
-            noButton.textContent = messages[messageIndex];
-        }
-
-        function createHeartsBurst() {
-            const burst = document.createElement('div');
-            burst.className = 'hearts-burst';
-            document.body.appendChild(burst);
-            
-            for (let i = 0; i < 30; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'burst-heart';
-                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
-                
-                const angle = (Math.PI * 2 * i) / 30;
-                const velocity = 100 + Math.random() * 200;
-                const tx = Math.cos(angle) * velocity;
-                const ty = Math.sin(angle) * velocity;
-                
-                heart.style.setProperty('--tx', tx + 'px');
-                heart.style.setProperty('--ty', ty + 'px');
-                heart.style.left = '50%';
-                heart.style.top = '50%';
-                
-                burst.appendChild(heart);
-            }
-            
-            setTimeout(() => burst.remove(), 1000);
-        }
-
-        function handleYes() {
-            createHeartsBurst();
-            
-            setTimeout(() => {
-                document.getElementById('questionPage').style.display = 'none';
-                document.getElementById('successPage').classList.add('active');
-            }, 300);
-        }
-    </script>
-</body>
+        <div class="hero-art" aria-label="Animated diagram connecting user experience, APIs, and data, representing my approach to software engineering" role="img">
+          <div class="art-topline"><span>THE BUILDER’S MINDSET</span><span class="art-coordinate">BASED IN HYDERABAD, INDIA</span></div><div class="art-grid"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <svg class="system-connections" viewBox="0 0 500 470" fill="none" aria-hidden="true"><path class="connection-track" d="M111 140H246V226M394 138H286V226M280 286V349H388M222 286V367H128"/><path class="connection-flow" d="M111 140H246V226M394 138H286V226M280 286V349H388M222 286V367H128"/><circle cx="111" cy="140" r="4"/><circle cx="394" cy="138" r="4"/><circle cx="388" cy="349" r="4"/><circle cx="128" cy="367" r="4"/></svg>
+          <div class="system-node node-interface"><span class="node-icon">⌘</span><div><span class="node-label">EXPERIENCE</span><strong>Made for people.</strong></div><span class="node-status"></span></div>
+          <div class="system-node node-api"><span class="node-code">{ }</span><div><span class="node-label">API LAYER</span><strong>Built to connect.</strong></div></div>
+          <div class="core-block"><svg viewBox="0 0 110 100" aria-hidden="true"><path d="m38 30-22 20 22 20M72 30l22 20-22 20M64 19 46 81"/></svg><span>THINK. BUILD. REFINE.</span></div>
+          <div class="system-node node-data"><svg class="database-icon" viewBox="0 0 30 36" aria-hidden="true"><ellipse cx="15" cy="8" rx="11" ry="5"/><path d="M4 8v20c0 7 22 7 22 0V8M4 18c0 7 22 7 22 0"/></svg><div><span class="node-label">FOUNDATION</span><strong>Engineered to scale.</strong></div></div>
+          <div class="code-note"><div class="code-note-header"><span><i></i><i></i><i></i></span><span>approach.ts</span></div><code><span class="code-purple">const</span> build = (idea) <span class="code-purple">=&gt;</span> {<br />&nbsp; <span class="code-purple">return</span> {<br />&nbsp;&nbsp; purpose: <span class="code-green">"real-world impact"</span>,<br />&nbsp;&nbsp; curiosity: <span class="code-orange">Infinity</span><br />&nbsp; };<br />};</code></div>
+          <div class="art-spark" aria-hidden="true">✳</div><div class="art-bottomline"><span><i class="status-dot"></i> ALWAYS ITERATING</span><span>IDEA → IMPACT</span></div>
+        </div>
+      </section>
+      <section class="metrics container" aria-label="Engineering highlights from my résumé">
+        <div class="metric"><span class="metric-number"><span data-count="2">2</span>+</span><span class="metric-label">Years in enterprise<br />software engineering</span></div><div class="metric"><span class="metric-number">$<span data-count="200">200</span>M+</span><span class="metric-label">Monthly transactions through<br />payment systems I worked on</span></div><div class="metric"><span class="metric-number"><span data-count="80">80</span>%</span><span class="metric-label">Reduction in<br />SQL query load time</span></div><div class="metric"><span class="metric-number">0<span data-count="3">3</span><span class="metric-asterisk">✳</span></span><span class="metric-label">Hackathon wins.<br />A lot of late nights.</span></div>
+      </section>
+      <div class="stack-band" aria-label="Core technologies"><div class="container stack-band-inner"><span class="stack-band-label">MY EVERYDAY TOOLKIT</span><div><span>Java</span><i>✳</i><span>TypeScript</span><i>✳</i><span>Python</span><i>✳</i><span>React</span><i>✳</i><span>SQL</span><i>✳</i><span>SuiteScript</span></div></div></div>
+      <section class="section container" id="work" aria-labelledby="work-title">
+        <div class="section-kicker"><span class="section-index">01 / SELECTED WORK</span><span>IDEAS MADE REAL</span></div><div class="section-heading"><h2 id="work-title">Built to make<br />a difference<span class="accent">.</span></h2><div class="section-intro"><p>A little curiosity. A real problem.<br />Here’s where they meet.</p><a class="text-link" href="https://github.com/biju-borah" target="_blank" rel="noopener noreferrer">More on GitHub <svg class="icon"><use href="#i-up-right"/></svg></a></div></div>
+        <div class="project-filters" role="group" aria-label="Filter projects"><button class="filter-button is-active" data-filter="all" aria-pressed="true">All work <span>02</span></button><button class="filter-button" data-filter="ai" aria-pressed="false">AI & ML</button><button class="filter-button" data-filter="web" aria-pressed="false">Web applications</button><button class="filter-button" data-filter="hardware" aria-pressed="false">Hardware & IoT</button></div><p id="filter-status" class="visually-hidden" aria-live="polite">Showing 2 projects</p>
+        <div class="project-grid">
+          <article class="project-card" data-categories="ai web">
+            <div class="project-image flood-image"><img src="assets/imgs/floodsafe-preview.svg" alt="Illustrated map with flood inundation zones and geographic contours" width="800" height="500" loading="lazy" /><span class="image-caption">PROJECT CONCEPT / GIS + AI</span><span class="project-award"><svg class="icon"><use href="#i-trophy"/></svg> SIH 2023 WINNER</span></div><div class="project-meta"><span>01 / CLIMATE TECH</span><span>2023</span></div><div class="project-title-row"><h3>FloodSafeGIS</h3><a class="project-arrow" href="https://floodsafegis-bghb.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Visit FloodSafeGIS live website"><svg class="icon"><use href="#i-up-right"/></svg></a></div><p class="project-description">Helping communities see what’s coming. AI-powered flood prediction that turns satellite imagery into actionable inundation maps.</p><div class="tags"><span>Next.js</span><span>Django</span><span>U-Net</span><span>Google Maps</span></div>
+            <details class="project-details"><summary>Behind the build <svg class="icon"><use href="#i-plus"/></svg></summary><div><p>Built a U-Net model to predict flood extent from satellite data, achieving an 88%+ Dice coefficient compared with HEC-RAS and reducing inference time by 95%.</p><p>The Django and Next.js application visualizes predictions with Google Maps, with model inference in 10 milliseconds. The project received a ₹10 lakh grant under the Yukti Innovation Challenge.</p></div></details><div class="project-links"><a class="text-link" href="https://floodsafegis-bghb.vercel.app/" target="_blank" rel="noopener noreferrer">Live project <svg class="icon"><use href="#i-up-right"/></svg></a><a class="text-link muted-link" href="https://github.com/Agneeshz/floodsafegis" target="_blank" rel="noopener noreferrer"><svg class="icon"><use href="#i-github"/></svg> Source code</a></div>
+          </article>
+          <article class="project-card" data-categories="ai hardware">
+            <div class="project-image cardio-image"><img src="assets/imgs/cardiosense-preview.svg" alt="Illustrated ECG monitoring interface with a heart waveform and connected circuit board" width="800" height="500" loading="lazy" /><span class="image-caption">PROJECT CONCEPT / HEALTH + AI</span><span class="project-award neutral-badge">FINAL YEAR PROJECT</span></div><div class="project-meta"><span>02 / HEALTH TECH</span><span>2023 – 2024</span></div><div class="project-title-row"><h3>CardioSense</h3><a class="project-arrow" href="https://github.com/biju-borah/EcgApp" target="_blank" rel="noopener noreferrer" aria-label="Explore CardioSense source on GitHub"><svg class="icon"><use href="#i-up-right"/></svg></a></div><p class="project-description">A closer look at the heartbeat. A portable, AI-powered ECG system connecting custom hardware with live waveform visualization.</p><div class="tags"><span>Embedded systems</span><span>Signal processing</span><span>CNN–LSTM</span></div>
+            <details class="project-details"><summary>Behind the build <svg class="icon"><use href="#i-plus"/></svg></summary><div><p>Designed a custom PCB around an ATmega328P microcontroller and a mobile app for USB signal acquisition and live ECG visualization.</p><p>Implemented Pan–Tompkins signal processing with 5–15 Hz bandpass filtering and adaptive thresholding to detect R-peaks and QRS complexes. Integrated a remotely hosted CNN–LSTM model for ECG classification.</p></div></details><div class="project-links"><a class="text-link" href="https://github.com/biju-borah/EcgApp" target="_blank" rel="noopener noreferrer">Explore project <svg class="icon"><use href="#i-up-right"/></svg></a><span class="project-note">HARDWARE MEETS SOFTWARE</span></div>
+          </article>
+        </div>
+      </section>
+      <section class="experience-section" id="experience" aria-labelledby="experience-title"><div class="container section"><div class="section-kicker"><span class="section-index">02 / EXPERIENCE</span><span>ENGINEERING IN THE REAL WORLD</span></div>
+        <div class="experience-layout"><div class="experience-heading"><h2 id="experience-title">Complex systems.<br />Clear outcomes<span class="accent">.</span></h2><p>Building software that businesses<br />depend on, every single day.</p><a class="text-link" href="assets/Resume_Biju_Borah.pdf" download="Biju_Borah_Resume.pdf">The full story <svg class="icon"><use href="#i-download"/></svg></a><div class="oracle-mark">ORACLE<span>NetSuite</span></div></div><div class="experience-content"><div class="role-heading"><div><span class="eyebrow">JUL 2024 — OCT 2026</span><h3>Application Software Engineer 1</h3><p>Oracle NetSuite <span>↗</span> <span class="role-location">Hyderabad, India</span></p></div><span class="role-number">01</span></div>
+          <div class="impact-list"><div class="impact-item"><span class="impact-item-index">01</span><div><h4>Payments, built for reliability.</h4><p>Developed REST integrations and payment services supporting <strong>$200M+ in monthly transactions</strong> and up to 500 payments per run, with bounded retries and state reconciliation.</p><span class="impact-tag">BACKEND / REST APIs / PAYMENTS</span></div></div><div class="impact-item"><span class="impact-item-index">02</span><div><h4>Less waiting. More doing.</h4><p>Reworked SQL joins, filtering, and pagination to <strong>reduce load time by 80%</strong> and eliminate timeouts across datasets exceeding one million records.</p><span class="impact-tag">SQL / PERFORMANCE / SCALE</span></div></div><div class="impact-item"><span class="impact-item-index">03</span><div><h4>Confidence in every release.</h4><p>Automated <strong>1,400+ API and UI regression tests</strong> with Jasmine and Playwright, integrated into TeamCity. Cut release validation from one week to eight hours.</p><span class="impact-tag">AUTOMATION / CI/CD / QUALITY</span></div></div><div class="impact-item"><span class="impact-item-index">04</span><div><h4>From complex rules to working systems.</h4><p>Built Java payroll services for <strong>600+ tax jurisdictions</strong> and SOAP integrations for new-hire reporting serving 40,000+ customers. Created three AI agent skills that reduced manual QA effort by 50%.</p><span class="impact-tag">JAVA / SOAP / AI-ASSISTED ENGINEERING</span></div></div></div>
+        </div></div>
+      </div></section>
+      <section class="section container about-section" id="about" aria-labelledby="about-title"><div class="section-kicker"><span class="section-index">03 / THE PERSON BEHIND THE CODE</span><span>ALWAYS A WORK IN PROGRESS</span></div>
+        <div class="about-layout"><div class="portrait-block"><div class="portrait-wrap"><img src="assets/imgs/dp.jpeg" alt="Biju Borah" width="1280" height="1280" loading="lazy" /><span class="portrait-corner">HELLO, WORLD.</span></div><div class="portrait-footer"><span><i class="status-dot"></i> BIJU BORAH</span><span>ENGINEER. BUILDER. EXPLORER.</span></div><div class="portrait-sticker" aria-hidden="true">STAY<br /><span>curious.</span>✳</div></div><div class="about-copy"><h2 id="about-title">Curiosity is<br />the common thread<span class="accent">.</span></h2><p>I’m a software engineer who enjoys taking things apart, understanding how they work, and putting them back together a little better.</p><p>My path started with Electrical Engineering at NIT Silchar. It took me through flood prediction, custom ECG hardware, and national hackathons — and into enterprise software at Oracle NetSuite.</p><p>Whether I’m making a slow query faster or connecting an AI model to a real-world problem, I care about the same thing: <strong>building something useful, and building it well.</strong></p><div class="education-note"><span class="education-icon">↗</span><div><strong>National Institute of Technology, Silchar</strong><p>B.Tech, Electrical Engineering · 2020 – 2024</p><span>8.72 / 10 CGPA</span></div></div></div></div>
+        <div class="skills-heading"><h3>A versatile toolkit.<br /><span>One builder’s mindset.</span></h3><p>The technologies I use to connect the dots.</p></div><div class="skills-grid"><div class="skill-group"><span class="skill-number">01 /</span><h4>Languages</h4><div class="tags"><span>Java</span><span>TypeScript</span><span>JavaScript</span><span>Python</span><span>SQL</span></div></div><div class="skill-group"><span class="skill-number">02 /</span><h4>Backend & data</h4><div class="tags"><span>Spring Boot</span><span>REST & SOAP</span><span>SuiteScript</span><span>Node.js</span><span>Django</span><span>Oracle SQL</span><span>PL/SQL</span><span>PostgreSQL</span><span>MongoDB</span></div></div><div class="skill-group"><span class="skill-number">03 /</span><h4>Frontend & delivery</h4><div class="tags"><span>React</span><span>Next.js</span><span>Git</span><span>Playwright</span><span>Jasmine</span><span>TeamCity</span><span>Postman</span><span>CI/CD</span><span>Prompt engineering</span></div></div></div>
+        <div class="awards"><div class="awards-label"><svg class="icon"><use href="#i-trophy"/></svg><span>A FEW MEMORABLE WINS</span></div><div class="award-row"><span class="award-year">2023</span><h4>Smart India Hackathon</h4><span class="award-level">National winner</span><span class="award-star">✳</span></div><div class="award-row"><span class="award-year">2022</span><h4>Un-flood Assam · MeitY</h4><span class="award-level">State winner</span><span class="award-star">✳</span></div><div class="award-row"><span class="award-year">2022</span><h4>NITS Hack 5.0</h4><span class="award-level">Inter-college winner</span><span class="award-star">✳</span></div></div>
+      </section>
+      <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="container"><div class="contact-top"><span class="section-index">04 / NEXT CHAPTER</span><span><i class="status-dot"></i> GOOD THINGS START WITH A CONVERSATION</span></div><div class="contact-main"><div><h2 id="contact-title">Have something<br />in mind? <span>Let’s build.</span></h2><p>An interesting problem, a collaboration, or just a hello.<br />I’d love to hear from you.</p></div><a class="contact-arrow" href="mailto:bijuborah2017@gmail.com" aria-label="Start a conversation by email"><svg class="icon"><use href="#i-up-right"/></svg></a></div><div class="contact-bottom"><div class="email-group"><a class="email-link" href="mailto:bijuborah2017@gmail.com">bijuborah2017@gmail.com</a><button class="copy-email icon-button" aria-label="Copy email address" title="Copy email address"><svg class="icon"><use href="#i-copy"/></svg></button></div><div class="social-links"><a href="https://github.com/biju-borah" target="_blank" rel="noopener noreferrer">GitHub <svg class="icon"><use href="#i-up-right"/></svg></a><a href="https://www.linkedin.com/in/biju-borah-1bb78620a/" target="_blank" rel="noopener noreferrer">LinkedIn <svg class="icon"><use href="#i-up-right"/></svg></a><a href="assets/Resume_Biju_Borah.pdf" download="Biju_Borah_Resume.pdf">Résumé <svg class="icon"><use href="#i-download"/></svg></a></div></div></div></section>
+    </main>
+    <footer class="site-footer container"><a class="wordmark" href="#home" aria-label="Back to top">bb<span class="wordmark-dot">.</span></a><p>Thoughtfully built by Biju Borah. <span>© <span id="year">2026</span></span></p><a class="back-to-top" href="#home">BACK TO TOP <svg class="icon"><use href="#i-arrow"/></svg></a></footer><div class="toast" role="status" aria-live="polite"></div>
+    <noscript><style>.project-filters,.theme-toggle,.menu-toggle,.copy-email{display:none}@media(max-width:700px){.mobile-nav[hidden]{display:flex!important}.mobile-nav,.site-header{position:static}}</style></noscript>
+  </body>
 </html>
