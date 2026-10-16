@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 800 500" fill="none" role="img" aria-labelledby="title desc">
   <title id="title">FloodSafeGIS project illustration</title>
   <desc id="desc">A conceptual geographic mapping interface with green terrain contours, a blue flood extent overlay, and a location marker.</desc>
   <defs>
@@ -9,7 +9,6 @@
       <path d="M0 0V14" stroke="#437D91" stroke-opacity=".17"/>
     </pattern>
     <clipPath id="map-clip"><rect x="44" y="84" width="712" height="358" rx="4"/></clipPath>
-    <filter id="card-shadow" x="-20%" y="-30%" width="140%" height="170%"><feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#243B30" flood-opacity=".08"/></filter>
   </defs>
   <path fill="#E7E8DD" d="M0 0h800v500H0z"/>
   <circle cx="722" cy="58" r="118" fill="#DCE1D4"/>
@@ -55,12 +54,14 @@
     <path d="M373 193c-9 0-16 7-16 16 0 12 16 28 16 28s16-16 16-28c0-9-7-16-16-16Z" fill="#BE633A" stroke="#F7F4E7" stroke-width="2.5"/>
     <circle cx="373" cy="209" r="5" fill="#F8F3E6"/>
   </g>
-  <g filter="url(#card-shadow)">
+  <g>
+    <rect x="65" y="106" width="168" height="36" rx="7" fill="#243B30" fill-opacity=".08"/>
     <rect x="65" y="103" width="168" height="36" rx="7" fill="#FCFCF6" stroke="#D8DDCF"/>
     <circle cx="83" cy="121" r="5" stroke="#708471" stroke-width="1.5"/><path d="m87 125 4 4" stroke="#708471" stroke-width="1.5" stroke-linecap="round"/>
     <text x="102" y="125" fill="#718071" font-family="Arial, sans-serif" font-size="10">Explore study area</text>
   </g>
-  <g filter="url(#card-shadow)">
+  <g>
+    <rect x="535" y="329" width="198" height="94" rx="9" fill="#243B30" fill-opacity=".08"/>
     <rect x="535" y="325" width="198" height="94" rx="9" fill="#FCFCF6" stroke="#D8DDCF"/>
     <rect x="551" y="342" width="8" height="8" rx="2" fill="#729CAB"/>
     <text x="569" y="350" fill="#233C32" font-family="Arial, sans-serif" font-size="13" font-weight="700">Flood extent</text>
