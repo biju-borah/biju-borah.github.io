@@ -4,7 +4,6 @@
   const root = document.documentElement;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const themeButton = document.querySelector('.theme-toggle');
-  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
   let savedTheme;
   try { savedTheme = localStorage.getItem('biju-portfolio-theme'); } catch { /* Storage can be unavailable in private browsing. */ }
 
@@ -13,13 +12,12 @@
     themeButton.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`);
     document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#17211d' : '#f6f6f0';
   }
-  setTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : systemTheme.matches ? 'dark' : 'light');
+  setTheme(savedTheme === 'dark' ? 'dark' : 'light');
   themeButton.addEventListener('click', () => {
     savedTheme = root.dataset.theme === 'dark' ? 'light' : 'dark';
     setTheme(savedTheme);
     try { localStorage.setItem('biju-portfolio-theme', savedTheme); } catch { /* The theme still works for this visit. */ }
   });
-  systemTheme.addEventListener('change', event => { if (!savedTheme) setTheme(event.matches ? 'dark' : 'light'); });
 
   const menuButton = document.querySelector('.menu-toggle');
   const mobileNav = document.querySelector('.mobile-nav');

@@ -2,6 +2,8 @@
 
 A responsive, dependency-free portfolio based on my résumé. Built with HTML, CSS, and JavaScript for GitHub Pages.
 
+Light mode is the default, regardless of the device's appearance setting. Visitors can use the theme toggle to switch modes; their explicit choice is remembered for future visits.
+
 ## Preview locally
 
 From the repository folder, run:
